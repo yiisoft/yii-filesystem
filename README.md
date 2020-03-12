@@ -131,4 +131,4 @@ function addImage(ImageStorageInterface $imageStorage)
     $imageStorage->writeStream('/path/to/image/myimage.jpeg', $myImageStream);
 }
 ```
-You can find documentation on `FilesystemInterface` methods you can find in the [Flysystem Docs](https://flysystem.thephpleague.com/v2/docs/).  
+You can find documentation on `FilesystemInterface` methods in the [Flysystem Docs](https://flysystem.thephpleague.com/v2/docs/).  
