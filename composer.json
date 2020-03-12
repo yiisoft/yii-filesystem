@@ -1,18 +1,18 @@
 {
-    "name": "yiisoft/_____",
+    "name": "yiisoft/yii-file-system",
     "type": "library",
-    "description": "_____",
+    "description": "yii-file-system",
     "keywords": [
-        "_____"
+        "filesystem", "file", "system"
     ],
     "homepage": "https://www.yiiframework.com/",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/_____/issues?state=open",
+        "issues": "https://github.com/yiisoft/yii-file-system/issues?state=open",
         "forum": "https://www.yiiframework.com/forum/",
         "wiki": "https://www.yiiframework.com/wiki/",
         "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/_____"
+        "source": "https://github.com/yiisoft/yii-file-system"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Yiisoft\\_____\\": "src"
+            "Yiisoft\\Yii\\FileSystem": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Yiisoft\\_____\\Tests\\": "tests"
+            "Yiisoft\\Yii\\FileSystem\\Tests\\": "tests"
         }
     },
     "extra": {
