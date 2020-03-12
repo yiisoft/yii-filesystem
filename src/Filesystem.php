@@ -2,12 +2,13 @@
 
 namespace Yiisoft\Yii\Filesystem;
 
+use League\Flysystem\DirectoryListing;
 use League\Flysystem\Filesystem as LeagueFilesystem;
 use League\Flysystem\FilesystemAdapter;
 use League\Flysystem\PathNormalizer;
 use Yiisoft\Aliases\Aliases;
 
-class Filesystem extends LeagueFilesystem implements FilesystemInterface
+final class Filesystem extends LeagueFilesystem implements FilesystemInterface
 {
     private Aliases $aliases;
 
@@ -104,7 +105,7 @@ class Filesystem extends LeagueFilesystem implements FilesystemInterface
         return parent::lastModified($path);
     }
 
-    public function listContents(string $location, bool $deep = LeagueFilesystem::LIST_SHALLOW): \League\Flysystem\DirectoryListing
+    public function listContents(string $location, bool $deep = LeagueFilesystem::LIST_SHALLOW): DirectoryListing
     {
         $location = $this->aliases->get($location);
         return parent::listContents($location, $deep);
