@@ -29,7 +29,7 @@ final class FileStorageServiceProvider extends ServiceProvider
             throw new \RuntimeException("Adapter is not defined in the \"$alias\" storage config.");
         }
 
-        if (!$adapter instanceof FilesystemAdapter) {
+        if (!is_subclass_of($adapter, FilesystemAdapter::class)) {
             throw new \RuntimeException('Adapter must implement \League\Flysystem\FilesystemAdapter interface.');
         }
     }
