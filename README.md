@@ -6,7 +6,7 @@
     <br>
 </p>
 
-The package provides an abstract filesystem to manage files and directories.
+An abstract filesystem to manage files and directories.
 
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii-filesystem/v/stable.png)](https://packagist.org/packages/yiisoft/yii-filesystem)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii-filesystem/downloads.png)](https://packagist.org/packages/yiisoft/yii-filesystem)
@@ -14,9 +14,23 @@ The package provides an abstract filesystem to manage files and directories.
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yiisoft/yii-filesystem/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/yii-filesystem/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/yiisoft/yii-filesystem/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/yii-filesystem/?branch=master)
 
-After you've installed the package, the `Yiisoft\Yii\Filesystem\FilesystemInterface` will be automatically registered 
+## Requirements
+
+The package requires PHP 7.4 and is meant to be used with Yii 3.
+
+## Installation
+
+```
+composer require yiisoft/yii-filesystem
+```
+
+After installation, the `Yiisoft\Yii\Filesystem\FilesystemInterface` will be automatically registered 
 in the main application container. This interface provides a local filesystem with root, as defined in the `@root` alias
-of the `aliases` parameter. So, you just use it anywhere this interface may be injected.
+of the `aliases` parameter.
+
+## Getting started
+
+The service could be obtained via DI container autowiring:
 
 ```php
 public function view(\Yiisoft\Yii\Filesystem\FilesystemInterface $filesystem)
@@ -25,11 +39,17 @@ public function view(\Yiisoft\Yii\Filesystem\FilesystemInterface $filesystem)
     //...
 }
 ```
+
 Also you can use aliases
+
 ```php
-    $someFileContent = $filesystem->write('@views/site/testfile.txt', 'Test content');
+$someFileContent = $filesystem->write('@views/site/testfile.txt', 'Test content');
 ```
-To define your own filesystems, you can configure it in the `config/params.php` as described below
+
+## Configuration
+
+Additional filesystems could be configured in `config/params.php` as described below:
+
 ```php
 'file.storage' => [
     'runtimeStorage' => [
@@ -81,8 +101,10 @@ To define your own filesystems, you can configure it in the `config/params.php` 
     ],
 ],
 ```
+
 Aliases `runtimeStorage` and `documentStorage` will be automatically registered in the main application container.
-So, you can get it from the container
+So, you can get it from the container:
+
 ```php
 public function index(ContainerInterface $container) 
 {
@@ -90,13 +112,16 @@ public function index(ContainerInterface $container)
 }
 ```
 
-If you want to use autowiring, you can create an own interface for your filesystem.
+If you prefer to use autowiring, you can create own interface for your filesystem.
+
 ```php
 interface ImageStorageInterface extends \Yiisoft\Yii\Filesystem\FilesystemInterface
 {
 }
 ```
-And register it in the `params`
+
+And then register it in the `params`:
+
 ```php
 'file.storage' => [
     ImageStorageInterface::class => [
@@ -121,7 +146,9 @@ And register it in the `params`
     ],
 ]
 ```
-Now you can use it like this
+
+Now you can use it like this:
+
 ```php
 //controller action
 public function addImage(ImageStorageInterface $imageStorage)
@@ -131,4 +158,5 @@ public function addImage(ImageStorageInterface $imageStorage)
     $imageStorage->writeStream('/path/to/image/myimage.jpeg', $myImageStream);
 }
 ```
+
 You can find documentation on `FilesystemInterface` methods in the [Flysystem Docs](https://flysystem.thephpleague.com/v2/docs/).  
