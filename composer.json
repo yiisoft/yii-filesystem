@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Yiisoft\\Yii\\FileSystem": "src"
+            "Yiisoft\\Yii\\FileSystem\\": "src"
         }
     },
     "autoload-dev": {
