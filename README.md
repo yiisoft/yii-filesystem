@@ -84,7 +84,7 @@ To define your own filesystems, you can configure it in the `config/params.php` 
 Aliases `runtimeStorage` and `documentStorage` will be automatically registered in the main application container.
 So, you can get it from the container
 ```php
-function index(ContainerInterface $container) 
+public function index(ContainerInterface $container) 
 {
     $documentStorage = $container->get('documentStorage');
 }
@@ -124,7 +124,7 @@ And register it in the `params`
 Now you can use it like this
 ```php
 //controller action
-function addImage(ImageStorageInterface $imageStorage)
+public function addImage(ImageStorageInterface $imageStorage)
 {
     //get image stream...
 
