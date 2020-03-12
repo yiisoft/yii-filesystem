@@ -122,7 +122,7 @@ And register it in the `params`
 ]
 ```
 Now you can use it like this
-```
+```php
 //controller action
 function addImage(ImageStorageInterface $imageStorage)
 {
