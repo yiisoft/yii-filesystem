@@ -19,7 +19,7 @@
     "require": {
         "php": "^7.4",
         "league/flysystem": "^2.0@dev",
-        "yiisoft/aliases": "^3.0@dev",
+        "yiisoft/aliases": "^1.0",
         "yiisoft/di": "^3.0@dev"
     },
     "require-dev": {
