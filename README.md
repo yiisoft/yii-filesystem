@@ -6,7 +6,8 @@
     <br>
 </p>
 
-An abstract filesystem to manage files and directories. Based on [Flysystem](https://flysystem.thephpleague.com/v2/docs/).
+An abstract filesystem that allows to swap underlying file system without rewriting application code.
+Based on [Flysystem](https://flysystem.thephpleague.com/v2/docs/).
 
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii-filesystem/v/stable.png)](https://packagist.org/packages/yiisoft/yii-filesystem)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii-filesystem/downloads.png)](https://packagist.org/packages/yiisoft/yii-filesystem)
