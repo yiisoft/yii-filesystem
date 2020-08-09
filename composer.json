@@ -3,7 +3,9 @@
     "type": "library",
     "description": "yii-filesystem",
     "keywords": [
-        "filesystem", "file", "system"
+        "filesystem",
+        "file",
+        "system"
     ],
     "homepage": "https://www.yiiframework.com/",
     "license": "BSD-3-Clause",
@@ -17,14 +19,14 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "league/flysystem": "^2.0@dev",
         "yiisoft/aliases": "^1.0",
         "yiisoft/di": "^3.0@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.0",
-        "phan/phan": "^2.4"
+        "phpunit/phpunit": "^9.3",
+        "phan/phan": "^3.0"
     },
     "autoload": {
         "psr-4": {
