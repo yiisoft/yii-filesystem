@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yiisoft\Yii\Filesystem;
 
 use League\Flysystem\DirectoryListing;
@@ -12,8 +14,12 @@ final class Filesystem extends LeagueFilesystem implements FilesystemInterface
 {
     private Aliases $aliases;
 
-    public function __construct(FilesystemAdapter $adapter, array $aliases = [], array $config = [], PathNormalizer $pathNormalizer = null)
-    {
+    public function __construct(
+        FilesystemAdapter $adapter,
+        array $aliases = [],
+        array $config = [],
+        PathNormalizer $pathNormalizer = null
+    ) {
         $this->prepareAliases($aliases);
 
         parent::__construct($adapter, $config, $pathNormalizer);
