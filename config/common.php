@@ -37,5 +37,5 @@ return [
 
         return new Filesystem($adapter, $aliases);
     },
-    FileStorageConfigs::class => static fn() => new FileStorageConfigs($params['file.storage'] ?? []),
+    FileStorageConfigs::class => static fn () => new FileStorageConfigs($params['file.storage'] ?? []),
 ];
