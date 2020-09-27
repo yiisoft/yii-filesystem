@@ -3,5 +3,5 @@
 use Yiisoft\Yii\Filesystem\FileStorageServiceProvider;
 
 return [
-    'FileStorage' => FileStorageServiceProvider::class
+    'yiisoft/yii-filesystem/file-storage' => FileStorageServiceProvider::class
 ];
