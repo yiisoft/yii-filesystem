@@ -14,7 +14,7 @@ use Yiisoft\Yii\Filesystem\FilesystemInterface;
 
 return [
     FilesystemInterface::class => static function () use ($params) {
-        $aliases = $params['aliases'] ?? [];
+        $aliases = $params['yiisoft/aliases']['aliases'] ?? [];
         if (!isset($aliases['@root'])) {
             throw new \RuntimeException('Alias of the root directory is not defined.');
         }
