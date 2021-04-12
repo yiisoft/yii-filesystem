@@ -58,7 +58,7 @@ Additional filesystems could be configured in `config/params.php` as described b
 'file.storage' => [
     'runtimeStorage' => [
         'adapter' => [
-            '__class' => \League\Flysystem\Local\LocalFilesystemAdapter::class,
+            'class' => \League\Flysystem\Local\LocalFilesystemAdapter::class,
             '__construct()' => [
                 dirname(__DIR__) . '/runtime',
                 \League\Flysystem\UnixVisibility\PortableVisibilityConverter::fromArray([
@@ -81,7 +81,7 @@ Additional filesystems could be configured in `config/params.php` as described b
     ],
     'documentStorage' => [
         'adapter' => [
-            '__class' => \League\Flysystem\Local\LocalFilesystemAdapter::class,
+            'class' => \League\Flysystem\Local\LocalFilesystemAdapter::class,
             '__construct()' => [
                 dirname(__DIR__) . '/docs',
                 \League\Flysystem\UnixVisibility\PortableVisibilityConverter::fromArray([
@@ -130,7 +130,7 @@ And then register it in the `params`:
 'file.storage' => [
     ImageStorageInterface::class => [
         'adapter' => [
-            '__class' => \League\Flysystem\Local\LocalFilesystemAdapter::class,
+            'class' => \League\Flysystem\Local\LocalFilesystemAdapter::class,
             '__construct()' => [
                 dirname(__DIR__) . '/storage/images',
                 \League\Flysystem\UnixVisibility\PortableVisibilityConverter::fromArray([
