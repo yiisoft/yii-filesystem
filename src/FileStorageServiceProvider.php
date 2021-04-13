@@ -26,7 +26,7 @@ final class FileStorageServiceProvider extends ServiceProvider
 
     private function validateAdapter(string $alias, array $config): void
     {
-        $adapter = $config['adapter']['__class'] ?? false;
+        $adapter = $config['adapter']['class'] ?? false;
         if (!$adapter) {
             throw new \RuntimeException("Adapter is not defined in the \"$alias\" storage config.");
         }
