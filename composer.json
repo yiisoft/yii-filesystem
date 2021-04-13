@@ -21,7 +21,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "league/flysystem": "^2.0",
-        "yiisoft/aliases": "^1.1.0",
+        "yiisoft/aliases": "^1.1|^2.0",
         "yiisoft/di": "^3.0@dev"
     },
     "require-dev": {
