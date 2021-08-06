@@ -6,22 +6,41 @@ namespace Yiisoft\Yii\Filesystem;
 
 use League\Flysystem\FilesystemAdapter;
 use Yiisoft\Di\Container;
-use Yiisoft\Di\Support\ServiceProvider;
+use Yiisoft\Di\CompositeContainer;
+use Psr\Container\ContainerInterface;
+use Yiisoft\Di\Contracts\ServiceProviderInterface;
 use Yiisoft\Factory\Factory;
 
-final class FileStorageServiceProvider extends ServiceProvider
+final class FileStorageServiceProvider implements ServiceProviderInterface
 {
-    public function register(Container $container): void
+    public function getDefinitions(): array
     {
-        $factory = new Factory();
-        $configs = $container->get(FileStorageConfigs::class)->getConfigs();
-        foreach ($configs as $alias => $config) {
-            $this->validateAdapter($alias, $config);
-            $configParams = $config['config'] ?? [];
-            $aliases = $config['aliases'] ?? [];
-            $adapter = $factory->create($config['adapter']);
-            $container->set($alias, fn () => new Filesystem($adapter, $aliases, $configParams));
-        }
+        return [];
+    }
+
+    public function getExtensions(): array
+    {
+        return [
+            ContainerInterface::class => static function (ContainerInterface $container, ContainerInterface $extended) {
+                $factory = new Factory();
+                $configs = $extended->get(FileStorageConfigs::class)->getConfigs();
+
+                $filesystemsDefinitions = [];
+                foreach ($configs as $alias => $config) {
+                    $this->validateAdapter($alias, $config);
+                    $configParams = $config['config'] ?? [];
+                    $aliases = $config['aliases'] ?? [];
+                    $adapter = $factory->create($config['adapter']);
+                    $filesystemsDefinitions[$alias] = fn() => new Filesystem($adapter, $aliases, $configParams);
+                }
+                $filesystemsContainer = new Container($filesystemsDefinitions);
+                $compositeContainer = new CompositeContainer();
+                $compositeContainer->attach($filesystemsContainer);
+                $compositeContainer->attach($extended);
+
+                return $compositeContainer;
+            }
+        ];
     }
 
     private function validateAdapter(string $alias, array $config): void
