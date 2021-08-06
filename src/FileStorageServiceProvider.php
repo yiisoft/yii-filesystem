@@ -31,7 +31,7 @@ final class FileStorageServiceProvider implements ServiceProviderInterface
                     $configParams = $config['config'] ?? [];
                     $aliases = $config['aliases'] ?? [];
                     $adapter = $factory->create($config['adapter']);
-                    $filesystemsDefinitions[$alias] = fn() => new Filesystem($adapter, $aliases, $configParams);
+                    $filesystemsDefinitions[$alias] = fn () => new Filesystem($adapter, $aliases, $configParams);
                 }
                 $filesystemsContainer = new Container($filesystemsDefinitions);
                 $compositeContainer = new CompositeContainer();
@@ -39,7 +39,7 @@ final class FileStorageServiceProvider implements ServiceProviderInterface
                 $compositeContainer->attach($extended);
 
                 return $compositeContainer;
-            }
+            },
         ];
     }
 
