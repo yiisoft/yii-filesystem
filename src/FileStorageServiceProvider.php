@@ -21,9 +21,9 @@ final class FileStorageServiceProvider implements ServiceProviderInterface
     public function getExtensions(): array
     {
         return [
-            ContainerInterface::class => static function (ContainerInterface $container, ContainerInterface $extended) {
+            'core.di.delegates' => static function (ContainerInterface $container, CompositeContainer $delegates) {
                 $factory = new Factory();
-                $configs = $extended->get(FileStorageConfigs::class)->getConfigs();
+                $configs = $container->get(FileStorageConfigs::class)->getConfigs();
 
                 $filesystemsDefinitions = [];
                 foreach ($configs as $alias => $config) {
@@ -33,12 +33,9 @@ final class FileStorageServiceProvider implements ServiceProviderInterface
                     $adapter = $factory->create($config['adapter']);
                     $filesystemsDefinitions[$alias] = fn () => new Filesystem($adapter, $aliases, $configParams);
                 }
-                $filesystemsContainer = new Container($filesystemsDefinitions);
-                $compositeContainer = new CompositeContainer();
-                $compositeContainer->attach($filesystemsContainer);
-                $compositeContainer->attach($extended);
+                $delegates->attach(new Container($filesystemsDefinitions));
 
-                return $compositeContainer;
+                return $delegates;
             },
         ];
     }
