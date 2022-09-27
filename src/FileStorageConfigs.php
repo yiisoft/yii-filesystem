@@ -6,11 +6,8 @@ namespace Yiisoft\Yii\Filesystem;
 
 final class FileStorageConfigs
 {
-    private array $storageConfigs;
-
-    public function __construct(array $storageConfigs)
+    public function __construct(private array $storageConfigs)
     {
-        $this->storageConfigs = $storageConfigs;
     }
 
     public function getConfigs(): array
