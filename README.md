@@ -20,7 +20,7 @@ Based on [Flysystem](https://flysystem.thephpleague.com/v2/docs/).
 
 ## Requirements
 
-The package requires PHP 7.4 and is meant to be used with Yii 3.
+The package requires PHP 8.0 and is meant to be used with Yii3.
 
 ## Installation
 
