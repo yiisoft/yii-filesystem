@@ -14,7 +14,7 @@ use Yiisoft\Yii\Filesystem\FilesystemInterface;
  */
 
 return [
-    FilesystemInterface::class => static function (Aliases $aliases) use ($params) {
+    FilesystemInterface::class => static function (Aliases $aliases) {
         $aliasesFolder = $aliases->getAll();
 
         if ($aliasesFolder  === []) {
