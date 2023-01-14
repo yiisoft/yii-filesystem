@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Yiisoft\Aliases\Aliases;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 use League\Flysystem\UnixVisibility\PortableVisibilityConverter;
 use Yiisoft\Yii\Filesystem\FileStorageConfigs;
@@ -13,14 +14,15 @@ use Yiisoft\Yii\Filesystem\FilesystemInterface;
  */
 
 return [
-    FilesystemInterface::class => static function () use ($params) {
-        $aliases = $params['yiisoft/aliases']['aliases'] ?? [];
-        if (!isset($aliases['@root'])) {
+    FilesystemInterface::class => static function (Aliases $aliases) use ($params) {
+        $aliasesFolder = $aliases->getAll();
+
+        if ($aliasesFolder  === []) {
             throw new \RuntimeException('Alias of the root directory is not defined.');
         }
 
         $adapter = new LocalFilesystemAdapter(
-            $aliases['@root'],
+            $aliases->get('@root'),
             PortableVisibilityConverter::fromArray([
                 'file' => [
                     'public' => 0644,
@@ -35,7 +37,7 @@ return [
             LocalFilesystemAdapter::DISALLOW_LINKS
         );
 
-        return new Filesystem($adapter, $aliases);
+        return new Filesystem($adapter, $aliasesFolder);
     },
     FileStorageConfigs::class => static fn () => new FileStorageConfigs($params['file.storage'] ?? []),
 ];
